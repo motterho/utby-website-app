@@ -11,13 +11,13 @@ import com.utby.springboot.web.service.dao.TodoRepository;
 
 @SpringBootApplication
 @ComponentScan("com.utby.springboot.web")
-public class SpringBootFirstWebApplication implements CommandLineRunner{
+public class SpringBootWebApplication implements CommandLineRunner{
     
     @Autowired
     TodoRepository todoRepository;
 
 	public static void main(String[] args) {
-		SpringApplication.run(SpringBootFirstWebApplication.class, args);
+		SpringApplication.run(SpringBootWebApplication.class, args);
 	}
 	
 	     
