@@ -5,30 +5,39 @@ import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
+
+import org.hibernate.annotations.GenericGenerator;
+import org.hibernate.annotations.Parameter;
 
 @Entity
 @Table(name = "notes_tab")
 public class Todo implements Serializable {
-    
+
     /**
      * 
      */
     private static final long serialVersionUID = -8760528476040711762L;
 
-    @Id
-    private int id;
+    @GenericGenerator(name = "usersSequenceGenerator", strategy = "org.hibernate.id.enhanced.SequenceStyleGenerator", parameters = {
+            @Parameter(name = "sequence_name", value = "usersSequence"), @Parameter(name = "initial_value", value = "1"),
+            @Parameter(name = "increment_size", value = "1") })
     
+    @Id
+    @GeneratedValue(generator = "usersSequenceGenerator")
+    private int id;
+
     @Column(name = "username")
     private String user;
-    
+
     @Column(name = "note")
     private String note;
-    
+
     @Column(name = "targetdate")
     private Date targetDate;
-    
+
     @Column(name = "isdone")
     private boolean isDone;
 
@@ -37,8 +46,7 @@ public class Todo implements Serializable {
         // TODO Auto-generated constructor stub
     }
 
-    public Todo(int id, String user, String note, Date targetDate,
-            boolean isDone) {
+    public Todo(int id, String user, String note, Date targetDate, boolean isDone) {
         super();
         this.id = id;
         this.user = user;
@@ -115,9 +123,7 @@ public class Todo implements Serializable {
 
     @Override
     public String toString() {
-        return String.format(
-                "Todo [id=%s, user=%s, note=%s, targetDate=%s, isDone=%s]", id,
-                user, note, targetDate, isDone);
+        return String.format("Todo [id=%s, user=%s, note=%s, targetDate=%s, isDone=%s]", id, user, note, targetDate, isDone);
     }
 
 }

@@ -41,6 +41,7 @@ public class TodoService {
         todo.setUser(name);
         todo.setNote(note);
         todo.setTargetDate(targetDate);
+        todo.setDone(isDone);
         try {
             todoRepository.save(todo);
         } catch (Exception e) {
@@ -51,8 +52,8 @@ public class TodoService {
         return retrieveTodos(todo.getUser());
     }
 
-    public List<Todo> deleteTodo(int id) {
-        Iterator<Todo> iterator = todoRepository.findById(id).iterator();
+    public List<Todo> delete(Long id) {
+        Iterator<Todo> iterator = todoRepository.findById(new Long(id).intValue()).iterator();
         Todo todo = null;
         while (iterator.hasNext()) {
             todo = iterator.next();

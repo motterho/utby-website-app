@@ -13,4 +13,7 @@ public interface TodoRepository extends CrudRepository<Todo, Long> {
     //@Query("select s from Student s where s.age <= ?")
     public List<Todo> findAll();
 
+       
+    public void delete(Long id);
+
 }

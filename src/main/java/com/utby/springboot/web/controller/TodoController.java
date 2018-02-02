@@ -21,6 +21,7 @@ public class TodoController {
     @Autowired
     TodoService service;
 
+    //@RequestMapping(value = "/{id}") 
     @RequestMapping(value = "/list-todos", method = RequestMethod.GET)
     public String showTodos(ModelMap model) {
         String name = (String) model.get("name");
@@ -28,12 +29,17 @@ public class TodoController {
         return "list-todos";
     }
 
+//  @RequestMapping(method = RequestMethod.PUT, consumes = MediaType.APPLICATION_JSON_VALUE)
+//  public void update(@RequestBody User user) {
+//      userRepository.save(user);
+//  }
     
+    //@RequestMapping(method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
     @RequestMapping(value="/add-todos", method = RequestMethod.GET)
     public String addTodos(ModelMap model){
         return "add-todos";
     }
-    
+        
     @RequestMapping(value = "/add-todos", method = RequestMethod.POST)
     public String addTodos(ModelMap model, @RequestParam String note, @RequestParam String StringTargetDate, @RequestParam(defaultValue = "false") boolean isDone) {
         String name = (String) model.get("name");
@@ -49,9 +55,29 @@ public class TodoController {
         String date=sdf.format(targetDate );
         System.out.println(date);
         
-                
-        model.put("todos", service.addTodo(name, note, targetDate, isDone ? isDone : false ));
+        System.out.println(model);
+      
+        model.put("todos", service.addTodo(name, note, targetDate, isDone));
         return "add-todos";
     }
 
+  //@RequestMapping(method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
+    @RequestMapping(value="/del-todos", method = RequestMethod.GET)
+    public String delete(ModelMap model){
+        System.out.println("First delete()");
+        return "del-todos";
+    }
+    
+    //@RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
+    @RequestMapping(value = "/del-todos", method = RequestMethod.POST)
+    public String delete(ModelMap model, @RequestParam Long id) {
+        System.out.println("Second delete()");
+        service.delete(id);
+        return "del-todos";
+    }
+
+//    @RequestMapping(value = "/{id}", method = RequestMethod.DELETE) 
+//    public void delete(@PathVariable long id) {
+//        userRepository.delete(id); 
+//    }
 }

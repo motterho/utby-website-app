@@ -5,8 +5,12 @@
 </head>
 
 <body>
-	Welcome ${name}!! <a href="/list-todos">Click here</a> to list your todo's.
+	Welcome ${name}!! 
+	<br/> <a href="/list-todos">Click here</a> to list your todo's.
 	<br/> <a href="/add-todos">Click here</a> to add your todo's.
+	<br/> <a href="/del-todos">Click here</a> to delete your todo's.
+
 </body>
+
 
 </html>

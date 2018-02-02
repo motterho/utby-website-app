@@ -24,12 +24,12 @@ public class SpringBootWebApplication implements CommandLineRunner{
     @Override
 	    public void run(String... args) throws Exception
 	    {
-	        // Getting all Students
-	        System.out.println("***** All Todos *******");
-	        for(Todo todo : todoRepository.findAll())
-	        {
-	            System.out.println(todo);
-	        }
-	        
+//	        // Getting all Students
+//	        System.out.println("***** All Todos *******");
+//	        for(Todo todo : todoRepository.findAll())
+//	        {
+//	            System.out.println(todo);
+//	        }
+//	        
 	    }
 }
